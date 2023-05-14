@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body::before {
+  display: block;
+  content: "";
+  height: 90px;
+}
+form {
+  margin: 50px;
+}
