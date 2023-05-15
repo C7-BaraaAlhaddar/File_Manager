@@ -58,3 +58,10 @@ form {
     text-align: center;
   }
 }
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import "./style.scss";
 import { useRouter } from "next/navigation";
 
 function NavBar() {
   const navigate = useRouter();
-  const [user, setUser] = useState(localStorage.getItem("user") ?? undefined);
   const logout = () => {
     localStorage.setItem("user", undefined);
     navigate.push("/");

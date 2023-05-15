@@ -15,7 +15,7 @@ function LoginForm() {
         const user = userCredential.user;
         console.log(user);
         localStorage.setItem("user", user.uid);
-        navigate.push("/home");
+        navigate.push(`/home`);
       })
       .catch((error) => {
         const errorCode = error.code;

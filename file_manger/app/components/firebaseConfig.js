@@ -6,6 +6,9 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { getDatabase } from "firebase/database";
+import { getStorage } from "firebase/storage";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -19,11 +22,21 @@ const firebaseConfig = {
   messagingSenderId: "425743855772",
   appId: "1:425743855772:web:24df5ff3c182c83e50bd59",
   measurementId: "G-6T6WKGQJ8Z",
+  databaseURL: "https://file-manger-514ef.firebaseio.com",
+  storageBucket: "gs://file-manger-514ef.appspot.com/",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
+const database = getDatabase(app);
+const storage = getStorage(app);
 
-export { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword };
+export {
+  auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  database,
+  storage,
+};
