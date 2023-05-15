@@ -2,7 +2,6 @@
 
 import React from "react";
 import RegisterForm from "../components/RegisterForm";
-import NavBar from "../components/NavBar";
 
 function RegisterPage() {
   return (

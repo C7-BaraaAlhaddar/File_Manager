@@ -6,7 +6,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { getDatabase } from "firebase/database";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -23,20 +23,21 @@ const firebaseConfig = {
   appId: "1:425743855772:web:24df5ff3c182c83e50bd59",
   measurementId: "G-6T6WKGQJ8Z",
   databaseURL: "https://file-manger-514ef.firebaseio.com",
-  storageBucket: "gs://file-manger-514ef.appspot.com/",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
-const database = getDatabase(app);
+const db = getFirestore(app);
 const storage = getStorage(app);
 
 export {
   auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  database,
+  db,
   storage,
+  collection,
+  addDoc,
 };

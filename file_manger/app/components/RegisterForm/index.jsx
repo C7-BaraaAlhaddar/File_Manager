@@ -3,6 +3,7 @@ import "./style.scss";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { auth, createUserWithEmailAndPassword } from "../firebaseConfig";
+import { addDoc, collection, db } from "../firebaseConfig";
 
 export default function RegisterForm() {
   const [email, setEmail] = useState("");
@@ -11,13 +12,26 @@ export default function RegisterForm() {
   const [lastName, setLastName] = useState("");
 
   const navigate = useRouter();
-  const registerHandler = (e) => {
+  const registerHandler = async (e) => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         // Signed in
         const user = userCredential.user;
         console.log(user);
+        try {
+          const docRef = await addDoc(collection(db, "users"), {
+            first: firstName,
+            last: lastName,
+            uid: user.uid,
+            images: [],
+            videos: [],
+          });
+
+          console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+          console.error("Error adding document: ", e);
+        }
         setEmail("");
         setPassword("");
         setFirstName("");

@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import NavBar from "../components/NavBar";
+import UploadBox from "../components/UploadBox";
 
 function HomePage() {
   const navigate = useRouter();
@@ -14,39 +15,53 @@ function HomePage() {
     <>
       <NavBar />
       <div className="home-page mt-32">
-        <div class="flex items-center justify-center w-4/5">
-          <label
-            for="dropzone-file"
-            class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-          >
-            <div class="flex flex-col items-center justify-center pt-5 pb-6">
-              <svg
-                aria-hidden="true"
-                class="w-10 h-10 mb-3 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                ></path>
-              </svg>
-              <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                <span class="font-semibold">Click to upload</span> or drag and
-                drop
-              </p>
-              <p class="text-xs text-gray-500 dark:text-gray-400">
-                SVG, PNG, JPG or GIF (MAX. 800x400px)
-              </p>
-            </div>
-            <input id="dropzone-file" type="file" class="hidden" />
-          </label>
-        </div>
+        <UploadBox />
       </div>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          addDataTest();
+        }}
+      >
+        <label
+          htmlFor="default-search"
+          className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+        >
+          Search
+        </label>
+        <div className="relative">
+          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg
+              aria-hidden="true"
+              className="w-5 h-5 text-gray-500 dark:text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              ></path>
+            </svg>
+          </div>
+          <input
+            type="search"
+            id="default-search"
+            className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Search Mockups, Logos..."
+            required
+          />
+          <button
+            type="submit"
+            className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            Search
+          </button>
+        </div>
+      </form>
     </>
   );
 }
