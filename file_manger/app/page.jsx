@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <main>
@@ -13,6 +15,12 @@ export default function Home() {
             to make your media management experience a breeze.
           </p>
         </div>
+        <Link
+          href="/register"
+          className="text-white mt-3 bg-stone-600 hover:bg-stone-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 "
+        >
+          Get started
+        </Link>
       </section>
     </main>
   );

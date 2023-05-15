@@ -15,6 +15,7 @@ body::before {
 }
 body {
   background-color: #f8f8f8;
+  overflow: hidden;
 }
 form {
   margin: 50px;
@@ -42,5 +43,9 @@ form {
   div {
     max-width: 60%;
     text-align: center;
+
+    h1 {
+      font-size: 2rem;
+    }
   }
 }
