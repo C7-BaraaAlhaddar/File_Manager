@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
+import { collection, addDoc } from "../firebaseConfig";
 
 export default function UploadBox() {
+  let fileRef = useRef();
+  const handleImageUpload = async (e) => {};
+
   return (
     <div className="flex items-center justify-center w-4/5">
       <label
@@ -31,7 +35,16 @@ export default function UploadBox() {
             SVG, PNG, JPG or GIF (MAX. 800x400px)
           </p>
         </div>
-        <input id="dropzone-file" type="file" class="hidden" />
+        <input
+          onInput={(e) => {
+            // handleImageUpload(e);
+            // console.log(fileRef.files[0]);
+          }}
+          ref={(input) => (fileRef = input)}
+          id="dropzone-file"
+          type="file"
+          className="hidden"
+        />
       </label>
     </div>
   );

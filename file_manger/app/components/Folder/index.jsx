@@ -5,14 +5,14 @@ export default function Folder({ path, d, name }) {
   const navigate = useRouter();
   return (
     <div
-      onClick={(e) => {
+      onClick={() => {
         navigate.push({ path });
       }}
-      class="flex items-center justify-center w-full h-48 bg-gray-300 rounded sm:w-96 dark:bg-gray-700"
+      className="flex items-center justify-center w-full h-48 bg-gray-300 rounded sm:w-96 dark:bg-gray-700"
     >
       <p>{name}</p>
       <svg
-        class="w-12 h-12 text-gray-200"
+        className="w-12 h-12 text-gray-200"
         xmlns="xhttp://www.w3.org/2000/svg"
         aria-hidden="true"
         fill="currentColor"
