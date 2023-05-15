@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.scss";
 import Link from "next/link";
+import { auth, createUserWithEmailAndPassword } from "firebase/auth";
+
 export default function RegisterForm() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const registerHandler = () => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
+  };
+
   return (
     <div>
       {" "}

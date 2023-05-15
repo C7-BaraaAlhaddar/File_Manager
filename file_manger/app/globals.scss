@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+body::before {
+  display: block;
+  content: "";
+  height: 65px;
+}
+body {
+  background-color: #f8f8f8;
+}
+form {
+  margin: 50px;
+}
+.loading-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px;
+}
+
+.hero {
+  height: 93vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #f8f8f8;
+  background-image: url("https://images.unsplash.com/photo-1683836145476-603ad16f4987?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1633&q=80");
+  background-color: grey;
+  background-blend-mode: multiply;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  div {
+    max-width: 60%;
+    text-align: center;
+  }
+}
