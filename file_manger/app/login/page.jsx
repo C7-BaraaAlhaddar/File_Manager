@@ -2,12 +2,16 @@
 
 import React from "react";
 import LoginForm from "../components/LoginForm";
+import NavBar from "../components/NavBar";
 
 function LoginPage() {
   return (
-    <div>
-      <LoginForm />
-    </div>
+    <>
+      <div className="register-login">
+        <h2>Login</h2>
+        <LoginForm />
+      </div>
+    </>
   );
 }
 

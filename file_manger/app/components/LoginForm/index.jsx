@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { auth, signInWithEmailAndPassword } from "firebase/auth";
-
+import { auth, signInWithEmailAndPassword } from "../firebaseConfig";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useRouter();
 
   const loginHandler = (e) => {
     e.preventDefault();
@@ -12,6 +14,8 @@ function LoginForm() {
         // Signed in
         const user = userCredential.user;
         console.log(user);
+        localStorage.setItem("user", user.uid);
+        navigate.push("/home");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -58,7 +62,12 @@ function LoginForm() {
             required
           />
         </div>
-
+        <p className=" mb-6">
+          Don't have an account ?{" "}
+          <Link className="text-blue-600" href="/register">
+            Register.
+          </Link>
+        </p>
         <button
           type="submit"
           className="text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-stone-600 dark:hover:bg-stone-700 dark:focus:ring-stone-800"
