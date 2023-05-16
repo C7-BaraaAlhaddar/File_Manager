@@ -10,6 +10,10 @@ import {
   db,
   updateDoc,
   doc,
+  query,
+  where,
+  getDocs,
+  collection,
 } from "../firebaseConfig";
 
 export default function UploadBox() {
@@ -27,7 +31,18 @@ export default function UploadBox() {
         )
       ).then(async (url) => {
         console.log(url);
-        const userRef = doc(db, "users", localStorage.getItem("user"));
+        const q = query(
+          collection(db, "users"),
+          where("uid", "==", localStorage.getItem("user"))
+        );
+
+        const querySnapshot = await getDocs(q);
+        let documentID;
+        querySnapshot.forEach((doc) => {
+          documentID = doc.id;
+        });
+        const userRef = doc(db, "users", documentID);
+
         await updateDoc(userRef, {
           images: arrayUnion(url),
         });

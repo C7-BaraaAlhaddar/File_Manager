@@ -14,6 +14,10 @@ import {
   arrayRemove,
   doc,
   updateDoc,
+  query,
+  where,
+  getDoc,
+  getDocs,
 } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
@@ -47,4 +51,8 @@ export {
   arrayRemove,
   updateDoc,
   doc,
+  query,
+  where,
+  getDoc,
+  getDocs,
 };
