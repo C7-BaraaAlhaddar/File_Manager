@@ -26,7 +26,10 @@ export default function ImagesArray() {
     );
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      setImages(doc.data().images);
+      // console.log(doc.data());
+      setImages(() => {
+        return doc.data().images;
+      });
       console.log(images);
     });
   };
@@ -36,17 +39,25 @@ export default function ImagesArray() {
   }, []);
   return (
     <div className="images-box">
-      {images.map((image) => {
-        <div className="image-box" key={image}>
-          {" "}
-          <a href="image">
-            <img src={image} alt="img" />
-          </a>
-          <button className="text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-stone-600 dark:hover:bg-stone-700 dark:focus:ring-stone-800">
-            Delete Image
-          </button>
-        </div>;
-      })}
+      {images &&
+        images.map((image) => {
+          return (
+            <div
+              className="image-box drop-shadow-lg
+
+            "
+              key={image}
+            >
+              {" "}
+              <a href="image">
+                <img src={image} alt="img" />
+              </a>
+              <button className="text-white bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-stone-600 dark:hover:bg-stone-700 dark:focus:ring-stone-800">
+                Delete Image
+              </button>
+            </div>
+          );
+        })}
     </div>
   );
 }

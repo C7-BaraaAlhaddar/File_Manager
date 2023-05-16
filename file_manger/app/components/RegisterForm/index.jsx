@@ -52,8 +52,8 @@ export default function RegisterForm() {
   };
 
   return (
-    <div>
-      {" "}
+    <div className="drop-shadow-lg register-box">
+      <h2>Register</h2>{" "}
       <form onSubmit={registerHandler}>
         <div className="relative z-0 w-full mb-6 group">
           <input

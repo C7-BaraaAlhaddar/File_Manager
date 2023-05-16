@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { auth, signInWithEmailAndPassword } from "../firebaseConfig";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import "./style.scss";
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,7 +28,9 @@ function LoginForm() {
   };
 
   return (
-    <div>
+    <div className="drop-shadow-lg login-box">
+      <h2>Login</h2>
+
       <form onSubmit={loginHandler}>
         <div className="mb-6">
           <label
