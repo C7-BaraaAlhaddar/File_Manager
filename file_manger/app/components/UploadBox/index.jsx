@@ -1,9 +1,39 @@
-import React, { useRef } from "react";
-import { collection, addDoc } from "../firebaseConfig";
+"use client";
+
+import React, { useRef, useState } from "react";
+import {
+  storage,
+  uploadBytes,
+  ref,
+  getDownloadURL,
+  arrayUnion,
+  db,
+  updateDoc,
+  doc,
+} from "../firebaseConfig";
 
 export default function UploadBox() {
   let fileRef = useRef();
-  const handleImageUpload = async (e) => {};
+  const handleImageUpload = async (e) => {
+    const imgRef = ref(
+      storage,
+      `${localStorage.getItem("user")}/images/${fileRef.files[0].name}`
+    );
+    uploadBytes(imgRef, fileRef.files[0]).then(() => {
+      getDownloadURL(
+        ref(
+          storage,
+          `${localStorage.getItem("user")}/images/${fileRef.files[0].name}`
+        )
+      ).then(async (url) => {
+        console.log(url);
+        const userRef = doc(db, "users", localStorage.getItem("user"));
+        await updateDoc(userRef, {
+          images: arrayUnion(url),
+        });
+      });
+    });
+  };
 
   return (
     <div className="flex items-center justify-center w-4/5">
@@ -36,10 +66,7 @@ export default function UploadBox() {
           </p>
         </div>
         <input
-          onInput={(e) => {
-            // handleImageUpload(e);
-            // console.log(fileRef.files[0]);
-          }}
+          onInput={handleImageUpload}
           ref={(input) => (fileRef = input)}
           id="dropzone-file"
           type="file"

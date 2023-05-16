@@ -1,17 +1,9 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import React from "react";
 import NavBar from "../components/NavBar";
 import UploadBox from "../components/UploadBox";
 import Folder from "../components/Folder";
 
 function HomePage() {
-  const navigate = useRouter();
-
-  // useEffect(() => {
-  //   if (!localStorage.getItem("user")) navigate.push("/login");
-  // }, [user]);
   return (
     <>
       <NavBar />
