@@ -5,6 +5,7 @@ function RegisterPage() {
   return (
     <>
       <div className="register-login">
+        <h2>Register</h2>
         <RegisterForm />
       </div>
     </>

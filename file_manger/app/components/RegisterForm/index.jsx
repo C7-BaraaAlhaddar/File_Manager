@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.scss";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -27,7 +27,7 @@ export default function RegisterForm() {
             last: lastName,
             uid: user.uid,
             images: [],
-            videos: [],
+            pdf: [],
           });
 
           console.log("Document written with ID: ", docRef.id);
