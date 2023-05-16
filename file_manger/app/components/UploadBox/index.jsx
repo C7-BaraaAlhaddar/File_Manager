@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import {
   storage,
   uploadBytes,
@@ -15,8 +15,10 @@ import {
   getDocs,
   collection,
 } from "../firebaseConfig";
+import { useRouter } from "next/navigation";
 
 export default function UploadBox() {
+  const navigate = useRouter();
   let fileRef = useRef();
   const handleImageUpload = async (e) => {
     const imgRef = ref(
@@ -46,6 +48,7 @@ export default function UploadBox() {
         await updateDoc(userRef, {
           images: arrayUnion(url),
         });
+        navigate.push("/images");
       });
     });
   };
