@@ -63,7 +63,7 @@ export default function DocsArray() {
             >
               {" "}
               <a href={pdf}>
-                <iframe src={pdf} title="pdf" />
+                <embed src={pdf} title="pdf" />
               </a>
               <button
                 onClick={(e) => {
