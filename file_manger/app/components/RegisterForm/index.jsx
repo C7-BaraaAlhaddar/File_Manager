@@ -4,8 +4,8 @@ import React, { useState, useEffect } from "react";
 import "./style.scss";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { auth, createUserWithEmailAndPassword } from "../firebaseConfig";
-import { addDoc, collection, db } from "../firebaseConfig";
+import { auth, createUserWithEmailAndPassword } from "../../firebaseConfig";
+import { addDoc, collection, db } from "../../firebaseConfig";
 
 export default function RegisterForm() {
   const [email, setEmail] = useState("");

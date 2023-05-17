@@ -14,7 +14,7 @@ import {
   where,
   getDocs,
   collection,
-} from "../firebaseConfig";
+} from "../../firebaseConfig";
 import { useRouter } from "next/navigation";
 
 export default function UploadBox() {
@@ -26,30 +26,59 @@ export default function UploadBox() {
       `${localStorage.getItem("user")}/images/${fileRef.files[0].name}`
     );
     uploadBytes(imgRef, fileRef.files[0]).then(() => {
-      getDownloadURL(
-        ref(
-          storage,
-          `${localStorage.getItem("user")}/images/${fileRef.files[0].name}`
-        )
-      ).then(async (url) => {
-        console.log(url);
-        const q = query(
-          collection(db, "users"),
-          where("uid", "==", localStorage.getItem("user"))
-        );
+      console.log(fileRef.files[0]);
 
-        const querySnapshot = await getDocs(q);
-        let documentID;
-        querySnapshot.forEach((doc) => {
-          documentID = doc.id;
-        });
-        const userRef = doc(db, "users", documentID);
+      if (fileRef.files[0].type.split("/")[0] === "image") {
+        getDownloadURL(
+          ref(
+            storage,
+            `${localStorage.getItem("user")}/images/${fileRef.files[0].name}`
+          )
+        ).then(async (url) => {
+          console.log(url);
+          const q = query(
+            collection(db, "users"),
+            where("uid", "==", localStorage.getItem("user"))
+          );
 
-        await updateDoc(userRef, {
-          images: arrayUnion(url),
+          const querySnapshot = await getDocs(q);
+          let documentID;
+          querySnapshot.forEach((doc) => {
+            documentID = doc.id;
+          });
+          const userRef = doc(db, "users", documentID);
+
+          await updateDoc(userRef, {
+            images: arrayUnion(url),
+          });
+          navigate("/images");
         });
-        location.reload();
-      });
+      } else if (fileRef.files[0].type === "application/pdf") {
+        getDownloadURL(
+          ref(
+            storage,
+            `${localStorage.getItem("user")}/docs/${fileRef.files[0].name}`
+          )
+        ).then(async (url) => {
+          console.log(url);
+          const q = query(
+            collection(db, "users"),
+            where("uid", "==", localStorage.getItem("user"))
+          );
+
+          const querySnapshot = await getDocs(q);
+          let documentID;
+          querySnapshot.forEach((doc) => {
+            documentID = doc.id;
+          });
+          const userRef = doc(db, "users", documentID);
+
+          await updateDoc(userRef, {
+            pdf: arrayUnion(url),
+          });
+          navigate("/docs");
+        });
+      }
     });
   };
 

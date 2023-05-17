@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import {
   arrayRemove,
@@ -9,7 +10,7 @@ import {
   where,
   getDocs,
   collection,
-} from "../firebaseConfig";
+} from "../../firebaseConfig";
 import "./style.scss";
 
 export default function ImagesArray() {
