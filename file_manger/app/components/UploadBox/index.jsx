@@ -21,14 +21,14 @@ export default function UploadBox() {
   const navigate = useRouter();
   let fileRef = useRef();
   const handleImageUpload = async (e) => {
-    const imgRef = ref(
-      storage,
-      `${localStorage.getItem("user")}/images/${fileRef.files[0].name}`
-    );
-    uploadBytes(imgRef, fileRef.files[0]).then(() => {
-      console.log(fileRef.files[0]);
+    if (fileRef.files[0].type.split("/")[0] === "image") {
+      const imgRef = ref(
+        storage,
+        `${localStorage.getItem("user")}/images/${fileRef.files[0].name}`
+      );
+      uploadBytes(imgRef, fileRef.files[0]).then(() => {
+        console.log(fileRef.files[0]);
 
-      if (fileRef.files[0].type.split("/")[0] === "image") {
         getDownloadURL(
           ref(
             storage,
@@ -53,11 +53,19 @@ export default function UploadBox() {
           });
           navigate("/images");
         });
-      } else if (fileRef.files[0].type === "application/pdf") {
+      });
+    } else {
+      const pdfRef = ref(
+        storage,
+        `${localStorage.getItem("user")}/pdfs/${fileRef.files[0].name}`
+      );
+      uploadBytes(pdfRef, fileRef.files[0]).then(() => {
+        console.log(fileRef.files[0]);
+
         getDownloadURL(
           ref(
             storage,
-            `${localStorage.getItem("user")}/docs/${fileRef.files[0].name}`
+            `${localStorage.getItem("user")}/pdfs/${fileRef.files[0].name}`
           )
         ).then(async (url) => {
           console.log(url);
@@ -78,8 +86,8 @@ export default function UploadBox() {
           });
           navigate("/docs");
         });
-      }
-    });
+      });
+    }
   };
 
   return (
